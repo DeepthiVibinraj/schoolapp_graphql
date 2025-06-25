@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:school_parent_app/core/constants/api_constant.dart';
 import '../models/student.dart';
 
 class StudentController extends GetxController {
@@ -23,8 +24,8 @@ class StudentController extends GetxController {
 
     try {
       isLoading(true);
-      final client = GraphQLClient(
-        link: HttpLink('http://localhost:4000/graphql'),
+      final GraphQLClient client = GraphQLClient(
+        link: HttpLink(graphqlEndpoint),
         cache: GraphQLCache(),
       );
 

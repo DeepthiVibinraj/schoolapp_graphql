@@ -41,11 +41,11 @@ class AppRoutes {
       page: () => UserAuthenticationScreen(),
       bindings: [UserAuthBinding()],
     ),
-    // GetPage(
-    //   name: admin_dashboard_screen,
-    //   page: () => AdminDashboardScreen(),
-    //   bindings: [AdminDashboardBinding()],
-    // ),
+    GetPage(
+      name: admin_dashboard_screen,
+      page: () => AdminDashboardScreen(),
+      //bindings: [AdminDashboardBinding()],
+    ),
     GetPage(
       name: student_list_screen,
       page: () => StudentListScreen(),

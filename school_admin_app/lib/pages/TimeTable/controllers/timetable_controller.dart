@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
+import 'package:school_admin_app/core/constants/api_constant.dart';
 import '../models/timetable.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class TimeTableController extends GetxController {
   final GraphQLClient client = GraphQLClient(
-    link: HttpLink('http://localhost:4000/graphql'),
+    link: HttpLink(graphqlEndpoint),
     cache: GraphQLCache(),
   );
 

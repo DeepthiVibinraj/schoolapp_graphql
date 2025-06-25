@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:school_admin_app/core/constants/api_constant.dart';
 import 'package:school_admin_app/utils/app_routes.dart';
 
 class UserAuthenticationController extends GetxController {
@@ -14,7 +15,7 @@ class UserAuthenticationController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // GraphQL Configuration
-  final String _graphqlEndpoint = "http://localhost:4000/graphql";
+  final String _graphqlEndpoint = graphqlEndpoint;
   late GraphQLClient _client;
 
   UserAuthenticationController() {
