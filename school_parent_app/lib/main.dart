@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
       darkTheme: AppThemeData.darkThemeData.copyWith(
         platform: defaultTargetPlatform,
       ),
-      themeMode: ThemeMode.light,
       initialRoute: AppRoutes.initialRoute,
       getPages: AppRoutes.pages,
       debugShowCheckedModeBanner: false,
