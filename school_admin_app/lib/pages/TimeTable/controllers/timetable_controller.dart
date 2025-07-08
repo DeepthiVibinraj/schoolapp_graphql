@@ -5,7 +5,12 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 
 class TimeTableController extends GetxController {
   final GraphQLClient client = GraphQLClient(
-    link: HttpLink(graphqlEndpoint),
+    link: HttpLink(
+      graphqlEndpoint,
+      defaultHeaders: {
+        "Content-Type": "application/json",
+      },
+    ),
     cache: GraphQLCache(),
   );
 

@@ -21,7 +21,12 @@ class TimetableController extends GetxController {
     isLoading(true);
     try {
       final client = GraphQLClient(
-        link: HttpLink(graphqlEndpoint),
+        link: HttpLink(
+          graphqlEndpoint,
+          defaultHeaders: {
+            "Content-Type": "application/json",
+          },
+        ),
         cache: GraphQLCache(),
       );
 

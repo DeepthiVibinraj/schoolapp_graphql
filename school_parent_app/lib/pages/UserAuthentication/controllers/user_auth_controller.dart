@@ -19,7 +19,12 @@ class UserAuthenticationController extends GetxController {
   late GraphQLClient _client;
 
   UserAuthenticationController() {
-    final HttpLink httpLink = HttpLink(_graphqlEndpoint);
+    final HttpLink httpLink = HttpLink(
+      _graphqlEndpoint,
+      defaultHeaders: {
+        "Content-Type": "application/json",
+      },
+    );
     _client = GraphQLClient(link: httpLink, cache: GraphQLCache());
   }
 

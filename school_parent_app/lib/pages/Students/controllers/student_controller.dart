@@ -25,7 +25,12 @@ class StudentController extends GetxController {
     try {
       isLoading(true);
       final GraphQLClient client = GraphQLClient(
-        link: HttpLink(graphqlEndpoint),
+        link: HttpLink(
+          graphqlEndpoint,
+          defaultHeaders: {
+            "Content-Type": "application/json",
+          },
+        ),
         cache: GraphQLCache(),
       );
 
