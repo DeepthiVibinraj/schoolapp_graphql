@@ -16,7 +16,7 @@ class StudentController extends GetxController {
   void fetchStudents() async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await await graphqlconfig();
       const query = '''
         query {
           getStudents {
@@ -51,7 +51,7 @@ class StudentController extends GetxController {
   void addStudent(Student student) async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await await graphqlconfig();
       const mutation = '''
         mutation AddStudent(\$name: String!, \$age: Int!, \$class: String!, \$contact: String!,\$email: String!) {
           addStudent(name: \$name, age: \$age, class: \$class, contact: \$contact, email: \$email) {
@@ -81,7 +81,7 @@ class StudentController extends GetxController {
   void deleteStudent(String id) async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const mutation = '''
         mutation DeleteStudent(\$id: ID!) {
           deleteStudent(id: \$id)
@@ -109,7 +109,7 @@ class StudentController extends GetxController {
   void updateStudent(String id, Student student) async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const mutation = '''
         mutation UpdateStudent(\$id: ID!, \$name: String, \$age: Int, \$class: String, \$contact: String, \$email: String) {
           updateStudent(id: \$id, name: \$name, age: \$age, class: \$class, contact: \$contact, email: \$email) {

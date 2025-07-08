@@ -105,4 +105,18 @@ class UserAuthenticationController extends GetxController {
       isLoading(false);
     }
   }
+
+  Future<String?> getIdToken() async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        final idToken = await user.getIdToken();
+        return idToken;
+      }
+      return null;
+    } catch (e) {
+      print("Error getting ID token: $e");
+      return null;
+    }
+  }
 }

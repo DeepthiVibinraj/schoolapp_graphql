@@ -16,7 +16,7 @@ class ClassController extends GetxController {
   void fetchClasses() async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const query = '''
         query {
           getClasses {
@@ -47,7 +47,7 @@ class ClassController extends GetxController {
   void addClass(Class classs) async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const mutation = '''
         mutation AddClass(\$name: String!, ) {
           addClass(name: \$name, ) {
@@ -77,7 +77,7 @@ class ClassController extends GetxController {
   void deleteClass(String id) async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const mutation = '''
         mutation DeleteClass(\$id: ID!) {
           deleteSClass(id: \$id)
@@ -105,7 +105,7 @@ class ClassController extends GetxController {
   void updateStaff(String id, Class classs) async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const mutation = '''
         mutation UpdateClass(\$id: ID!, \$name: String, ) {
           updateClass(id: \$id, name: \$name,) {

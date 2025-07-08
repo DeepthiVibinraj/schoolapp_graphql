@@ -16,7 +16,7 @@ class SubjectController extends GetxController {
   void fetchSubjects() async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const query = '''
         query {
           getSubjects {
@@ -48,7 +48,7 @@ class SubjectController extends GetxController {
   void addSubject(Subject subject) async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const mutation = '''
         mutation AddSubject(\$name: String!,) {
           addSubject(name: \$name, ) {
@@ -78,7 +78,7 @@ class SubjectController extends GetxController {
   void deleteSubject(String id) async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const mutation = '''
         mutation DeleteSubject(\$id: ID!) {
           deleteSubject(id: \$id)
@@ -106,7 +106,7 @@ class SubjectController extends GetxController {
   void updateSubject(String id, Subject subject) async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const mutation = '''
         mutation UpdateSubject(\$id: ID!, \$name: String,) {
           updateSubject(id: \$id, name: \$name, ) {

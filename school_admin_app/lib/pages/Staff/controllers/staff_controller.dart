@@ -17,7 +17,7 @@ class StaffController extends GetxController {
   void fetchStaffs() async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const query = '''
         query {
           getStaffs {
@@ -51,7 +51,7 @@ class StaffController extends GetxController {
   void addStaff(Staff staff) async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const mutation = '''
         mutation AddStaff(\$name: String!, \$age: Int!, \$qualification: String!, \$contact: String!,\$email: String!) {
           addStaff(name: \$name, age: \$age, qualification: \$qualification, contact: \$contact, email: \$email) {
@@ -81,7 +81,7 @@ class StaffController extends GetxController {
   void deleteStaff(String id) async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const mutation = '''
         mutation DeleteStaff(\$id: ID!) {
           deleteStaff(id: \$id)
@@ -109,7 +109,7 @@ class StaffController extends GetxController {
   void updateStaff(String id, Staff staff) async {
     isLoading(true);
     try {
-      final client = graphqlconfig();
+      final client = await graphqlconfig();
       const mutation = '''
         mutation UpdateStaff(\$id: ID!, \$name: String, \$age: Int, \$qualification: String, \$contact: String, \$email: String) {
           updateStaff(id: \$id, name: \$name, age: \$age, qualification: \$qualification, contact: \$contact, email: \$email) {
