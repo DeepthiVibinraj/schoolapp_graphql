@@ -1,24 +1,37 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:school_admin_app/core/constants/api_constant.dart';
+import 'package:school_admin_app/graphql_config.dart';
 import '../models/timetable.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class TimeTableController extends GetxController {
-  final GraphQLClient client = GraphQLClient(
-    link: HttpLink(
-      graphqlEndpoint,
-      defaultHeaders: {
-        "Content-Type": "application/json",
-      },
-    ),
-    cache: GraphQLCache(),
-  );
+//   final firebaseUser = FirebaseAuth.instance.currentUser;
+// final idToken = await firebaseUser?.getIdToken();
+// final client = await graphqlconfig();
+//   final GraphQLClient client = GraphQLClient(
+//     link: HttpLink(
+//       graphqlEndpoint,
+//       defaultHeaders: {
+//         "Content-Type": "application/json",
+//  "Authorization": "Bearer $idToken",
+//       },
+//     ),
+//     cache: GraphQLCache(),
+//   );
 
   var timeTables = <TimeTable>[].obs;
   var isLoading = false.obs;
 
+  @override
+  void onInit() {
+    fetchTimeTables();
+    super.onInit();
+  }
+
   // Fetch all timetables
   Future<void> fetchTimeTables() async {
+    final client = await graphqlconfig();
     isLoading.value = true;
 
     const String query = """
@@ -48,6 +61,7 @@ class TimeTableController extends GetxController {
   // Add a new timetable
   Future<void> addTimeTable(
       String className, List<DaySchedule> schedule) async {
+    final client = await graphqlconfig();
     const String mutation = """
       mutation AddTimeTable(\$className: String!, \$schedule: [DayScheduleInput!]!) {
         addTimeTable(className: \$className, schedule: \$schedule) {
@@ -80,6 +94,7 @@ class TimeTableController extends GetxController {
   // Update a timetable
   Future<void> updateTimeTable(
       String id, String className, List<DaySchedule> schedule) async {
+    final client = await graphqlconfig();
     const String mutation = """
       mutation UpdateTimeTable(\$id: ID!, \$className: String!, \$schedule: [DayScheduleInput!]!) {
         updateTimeTable(id: \$id, className: \$className, schedule: \$schedule) {
@@ -116,6 +131,7 @@ class TimeTableController extends GetxController {
 
   // Delete a timetable
   Future<void> deleteTimeTable(String id) async {
+    final client = await graphqlconfig();
     const String mutation = """
       mutation DeleteTimeTable(\$id: ID!) {
         deleteTimeTable(id: \$id) {

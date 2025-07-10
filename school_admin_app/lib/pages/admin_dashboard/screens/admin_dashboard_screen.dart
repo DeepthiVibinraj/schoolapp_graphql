@@ -120,11 +120,11 @@ class AdminDashboardScreen extends StatelessWidget {
                             Get.toNamed(AppRoutes.timetable_list_screen);
                           }),
                       _buildQuickAccessButton(
-                          icon: ImageConstant.exam,
-                          label: 'Exam',
+                          icon: ImageConstant.homework,
+                          label: 'Homework',
                           color: colorScheme.primary,
                           function: () {
-                            Get.toNamed(AppRoutes.page_under_construction);
+                            Get.toNamed(AppRoutes.homework_list_screen);
                           }),
                       // _buildQuickAccessButton(
                       //     icon: Icons.school,

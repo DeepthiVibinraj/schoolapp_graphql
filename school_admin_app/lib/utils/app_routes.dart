@@ -18,6 +18,9 @@ import 'package:school_admin_app/pages/TimeTable/screens/timetable_add_screen.da
 import 'package:school_admin_app/pages/TimeTable/screens/timetable_list_screen.dart';
 import 'package:school_admin_app/pages/UserAuthentication/bindings/user_auth_binding.dart';
 import 'package:school_admin_app/pages/UserAuthentication/user_auth_screen.dart';
+import 'package:school_admin_app/pages/homework/bindings/homework_binding.dart';
+import 'package:school_admin_app/pages/homework/screens/homework_add_screen.dart';
+import 'package:school_admin_app/pages/homework/screens/homework_list_screen.dart';
 
 class AppRoutes {
   static const String login = '/login';
@@ -32,6 +35,8 @@ class AppRoutes {
   static const String class_add_screen = '/class_add_screen';
   static const String timetable_list_screen = '/timetable_list_screen';
   static const String timetable_add_screen = '/timetable_add_screen';
+  static const String homework_list_screen = '/homework_list_screen';
+  static const String homework_add_screen = '/homework_add_screen';
   static const String page_under_construction = '/page_under_construction';
 
   static String initialRoute = '/';
@@ -96,6 +101,23 @@ class AppRoutes {
       page: () => AddTimeTableScreen(),
       bindings: [TimeTableBinding()],
     ),
+    GetPage(
+      name: login,
+      page: () => UserAuthenticationScreen(),
+      bindings: [UserAuthBinding()],
+    ),
+    // Page under construction route
+    GetPage(
+      name: homework_list_screen,
+      page: () => HomeworkListScreen(),
+      bindings: [HomeworkBinding()],
+    ),
+    GetPage(
+      name: homework_add_screen,
+      page: () => AddHomeworkScreen(),
+      bindings: [HomeworkBinding()],
+    ),
+
     GetPage(
       name: page_under_construction,
       page: () => PageUnderConstruction(),

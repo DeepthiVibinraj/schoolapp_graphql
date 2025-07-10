@@ -118,10 +118,17 @@ class _AddTimeTableScreenState extends State<AddTimeTableScreen> {
                               );
                             }).toList(),
                             onChanged: (value) {
-                              setState(() {
-                                schedule[index].day = value!;
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                setState(() {
+                                  schedule[index].day = value!;
+                                });
                               });
                             },
+                            // onChanged: (value) {
+                            //   setState(() {
+                            //     schedule[index].day = value!;
+                            //   });
+                            // },
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Day name is required';
@@ -165,21 +172,39 @@ class _AddTimeTableScreenState extends State<AddTimeTableScreen> {
                                             );
                                           }).toList(),
                                           onChanged: (value) {
-                                            setState(() {
-                                              if (schedule[index]
+                                            WidgetsBinding.instance
+                                                .addPostFrameCallback((_) {
+                                              setState(() {
+                                                if (schedule[index]
+                                                        .periods
+                                                        .length >
+                                                    periodIndex) {
+                                                  schedule[index].periods[
+                                                      periodIndex] = value!;
+                                                } else {
+                                                  schedule[index]
                                                       .periods
-                                                      .length >
-                                                  periodIndex) {
-                                                schedule[index]
-                                                        .periods[periodIndex] =
-                                                    value!;
-                                              } else {
-                                                schedule[index]
-                                                    .periods
-                                                    .add(value!);
-                                              }
+                                                      .add(value!);
+                                                }
+                                              });
                                             });
                                           },
+                                          // onChanged: (value) {
+                                          //   setState(() {
+                                          //     if (schedule[index]
+                                          //             .periods
+                                          //             .length >
+                                          //         periodIndex) {
+                                          //       schedule[index]
+                                          //               .periods[periodIndex] =
+                                          //           value!;
+                                          //     } else {
+                                          //       schedule[index]
+                                          //           .periods
+                                          //           .add(value!);
+                                          //     }
+                                          //   });
+                                          // },
                                           validator: (value) {
                                             if (value == null ||
                                                 value.isEmpty) {

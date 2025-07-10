@@ -110,7 +110,7 @@ class UserAuthenticationController extends GetxController {
     try {
       final user = FirebaseAuth.instance.currentUser;
       if (user != null) {
-        final idToken = await user.getIdToken();
+        final idToken = await user.getIdToken(true);
         return idToken;
       }
       return null;
