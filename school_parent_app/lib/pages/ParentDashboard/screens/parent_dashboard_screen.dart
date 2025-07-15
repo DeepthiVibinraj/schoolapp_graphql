@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:school_parent_app/core/constants/constants.dart';
 import 'package:school_parent_app/core/theme/app_core_theme_export.dart';
+import 'package:school_parent_app/pages/ParentDashboard/controllers/parent_dashboard_controller.dart';
 import 'package:school_parent_app/pages/SideMenu/side_menu_drawer.dart';
 import 'package:school_parent_app/pages/Students/controllers/student_controller.dart';
 import 'package:school_parent_app/pages/Students/models/student.dart';
@@ -13,6 +14,8 @@ import 'package:school_parent_app/utils/app_routes.dart';
 class ParentDashboardScreen extends StatelessWidget {
   //ParentDashboardScreen({super.key});
   final StudentController controller = Get.put(StudentController());
+  final ParentDashboardController parentDashboardController =
+      Get.put(ParentDashboardController());
 
   @override
   Widget build(BuildContext context) {
