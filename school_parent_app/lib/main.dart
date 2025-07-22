@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +20,30 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  User? currentUser = FirebaseAuth.instance.currentUser;
+
+  String initialRoute;
+
+  if (currentUser != null) {
+    // User is already logged in
+    // You can check role from Firestore too if needed
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(currentUser.uid)
+        .get();
+
+    String? role = doc.data()?['userRole'] ?? 'admin';
+
+    if (role == 'parent') {
+      initialRoute = AppRoutes.parent_dashboard_screen;
+    } else {
+      initialRoute = AppRoutes.login;
+    }
+  } else {
+    initialRoute = AppRoutes.login;
+  }
+
+  runApp(MyApp(initialRoute: initialRoute));
   // Foreground notifications
   const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -34,7 +60,7 @@ void main() async {
   // Background message handler
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   Get.put<GraphQLClient>(client);
-  runApp(const MyApp());
+  runApp(MyApp(initialRoute: initialRoute));
 }
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -49,7 +75,9 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 // }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String initialRoute;
+
+  const MyApp({super.key, required this.initialRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +89,7 @@ class MyApp extends StatelessWidget {
       darkTheme: AppThemeData.darkThemeData.copyWith(
         platform: defaultTargetPlatform,
       ),
-      initialRoute: AppRoutes.initialRoute,
+      initialRoute: initialRoute,
       getPages: AppRoutes.pages,
       debugShowCheckedModeBanner: false,
     );
